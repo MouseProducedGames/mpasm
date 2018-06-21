@@ -33,7 +33,11 @@ enum class OP : uint8_t
 
 	ConvF32,
 
-	ConvF64
+	ConvF64,
+
+	Gosub = 0x50,
+	Jmp,
+	JmpIf
 };
 
 enum class DT : uint8_t

@@ -9,6 +9,14 @@
 #include "ptrfuncs.h"
 #include "valuefuncs.h"
 
+void Run(
+	const std::vector<uint8_t> &inst,
+	size_t &IP,
+	std::vector<byte> &stk,
+	size_t &SP,
+	size_t memadjust
+);
+
 #define dtcall(indirection, shorttype, type)\
 void DT##shorttype##(\
 	const std::vector<uint8_t> &inst,\
@@ -68,6 +76,21 @@ void DT##shorttype##(\
 	case OP::ConvUI64:\
 	{\
 		##indirection##conv(type, uint64_t);\
+		break;\
+	}\
+	case OP::Gosub:\
+	{\
+		##indirection##gosub(type);\
+		break;\
+	}\
+	case OP::Jmp:\
+	{\
+		##indirection##jmpif(type);\
+		break;\
+	}\
+	case OP::JmpIf:\
+	{\
+		##indirection##jmpif(type);\
 		break;\
 	}\
 	case OP::OpAdd:\

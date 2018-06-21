@@ -41,6 +41,49 @@ size_t partialpvalue = (size_t)storeptr(totype, ptvvalue);\
 setpvalue(size_t, IP + 2, &partialpvalue);\
 IP = memloc;
 
+#define ptrgosub(type)\
+uint64_t * ppnewIP;\
+uint64_t fb_ppnewIP = 0;\
+uint64_t memloc = IP + 4;\
+getpvalue_restack(uint64_t, IP + 2, ppnewIP, fb_ppnewIP) \
+uint64_t * pnewIP = getmemfullptr(uint64_t, ppnewIP);\
+uint64_t newIP = *pnewIP;\
+Run(\
+	inst,\
+	newIP,\
+	stk,\
+	SP,\
+	memadjust\
+);\
+IP = memloc;
+
+#define ptrjmp(type)\
+uint64_t * ppnewIP;\
+uint64_t fb_ppnewIP = 0;\
+uint64_t memloc = IP + 4;\
+getpvalue_restack(uint64_t, IP + 2, ppnewIP, fb_ppnewIP) \
+uint64_t * pnewIP = getmemfullptr(uint64_t, ppnewIP);\
+uint64_t newIP = *pnewIP;\
+IP = newIP;
+
+#define ptrjmpif(type)\
+uint64_t * pnewIP;\
+uint64_t fb_pnewIP = 0;\
+type * pjmpcheck;\
+type fb_pjmpcheck = 0;\
+uint64_t memloc = IP + 4;\
+getpvalue_restack(uint64_t, IP + 2, pnewIP, fb_pnewIP) \
+getpvalue_restack(type, IP + 3, pjmpcheck, fb_pjmpcheck) \
+if (*pjmpcheck)\
+{\
+	uint64_t newIP = *pnewIP;\
+	IP = newIP;\
+}\
+else\
+{\
+	IP = memloc;\
+}
+
 #define ptrpush(type)\
 type * value;\
 type fb_value = 0;\

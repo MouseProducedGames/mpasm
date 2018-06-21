@@ -27,6 +27,7 @@ void Run(
 	{
 		switch ((DT)inst[IP])
 		{
+		default: return;
 			typecall(F32);
 			typecall(F64);
 

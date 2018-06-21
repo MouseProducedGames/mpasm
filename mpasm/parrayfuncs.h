@@ -52,6 +52,52 @@ while(i < patvalue->length())\
 setpavalue(mparray<totype>, IP + 2, patvalue);\
 IP = memloc;
 
+#define parraygosub(type)\
+mparray<uint64_t> * ppanewIP;\
+mparray<uint64_t> fb_ppanewIP(nullptr, 0);\
+uint64_t memloc = IP + 4;\
+getpvalue_restack(mparray<uint64_t>, IP + 2, ppanewIP, fb_ppanewIP) \
+mparray<uint64_t> panewIP = *ppanewIP;\
+size_t i = 0;\
+while(i < panewIP.length())\
+{\
+	Run(\
+		inst,\
+		panewIP[i],\
+		stk,\
+		SP,\
+		memadjust\
+	);\
+}\
+IP = memloc;
+
+#define parrayjmp(type) /* That's a very good question. */
+
+#define parrayjmpif(type)\
+mparray<uint64_t> * ppanewIP;\
+mparray<uint64_t> fb_ppanewIP(nullptr, 0);\
+type * pjmpcheck;\
+type fb_pjmpcheck = 0;\
+uint64_t memloc = IP + 4;\
+getpvalue_restack(mparray<uint64_t>, IP + 2, ppanewIP, fb_ppanewIP) \
+getpvalue_restack(type, IP + 3, pjmpcheck, fb_pjmpcheck) \
+if (*pjmpcheck)\
+{\
+	mparray<uint64_t> panewIP = *ppanewIP;\
+	size_t i = 0;\
+	while(i < panewIP.length())\
+	{\
+		Run(\
+			inst,\
+			panewIP[i],\
+			stk,\
+			SP,\
+			memadjust\
+		);\
+	}\
+}\
+IP = memloc;
+
 #define parraypush(type)\
 mparray<type> * value;\
 mparray<type> fb_value(nullptr, 0);\
