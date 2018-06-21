@@ -7,12 +7,12 @@
 #include "paccess.h"
 
 #define getpavalue(type, IP, value, fb_value)\
-switch ((ML)inst[IP])\
+switch ((ML)ctx.inst()[IP])\
 {\
-	default: value = &reg<type>[inst[IP]]; break;\
+	default: value = &reg<type>[ctx.inst()[IP]]; break;\
 	case ML::Mem:\
 	{\
-		value = loadptr(type, inst[memloc]);\
+		value = loadptr(type, ctx.inst()[memloc]);\
 		memloc += sizeof(size_t);\
 	}\
 	break;\
@@ -22,11 +22,11 @@ switch ((ML)inst[IP])\
 }
 
 #define getpavalue_restack(type, IP, value, fb_value) \
-switch ((ML)inst[IP])\
+switch ((ML)ctx.inst()[IP])\
 {\
-	default: value = &reg<type>[inst[IP]]; break;\
+	default: value = &reg<type>[ctx.inst()[IP]]; break;\
 	case ML::Mem:\
-		value = loadptr(type, inst[memloc]);\
+		value = loadptr(type, ctx.inst()[memloc]);\
 		memloc += sizeof(size_t);\
 		break;\
 	case ML::Stk:\
@@ -35,9 +35,9 @@ switch ((ML)inst[IP])\
 }
 
 #define setpavalue(type, IP, value)\
-switch ((ML)inst[IP])\
+switch ((ML)ctx.inst()[IP])\
 {\
-	default: reg<type>[inst[IP]] = static_cast<type>(*value); break;\
+	default: reg<type>[ctx.inst()[IP]] = static_cast<type>(*value); break;\
 	case ML::Mem:\
 		setmemloc(type, value);\
 		memloc += sizeof(size_t);\
@@ -48,9 +48,9 @@ switch ((ML)inst[IP])\
 }
 
 #define pushpavalue(type, IP, value)\
-switch ((ML)inst[IP])\
+switch ((ML)ctx.inst()[IP])\
 {\
-	default: reg<type>[inst[IP]] = static_cast<type>(*value); break;\
+	default: reg<type>[ctx.inst()[IP]] = static_cast<type>(*value); break;\
 	case ML::Mem:\
 	{\
 		setmemloc(type, value);\
@@ -58,7 +58,7 @@ switch ((ML)inst[IP])\
 		break;\
 	}\
 	case ML::Stk:\
-		push(static_cast<type>(*value), stk, SP);\
+		push(static_cast<type>(*value), ctx.stk(), ctx.SP());\
 		break;\
 }
 

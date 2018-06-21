@@ -3,6 +3,7 @@
 
 #include "syscall.h"
 #include "ptrfuncs.h"
+#include "run_context.h"
 
 enum class syscall2op : uint64_t
 {
@@ -24,51 +25,51 @@ template<typename T>
 syscallfunc deallocateparray_func;
 
 #define allocatecode(type)\
-type value = *((type*)(&stk.at(SP - sizeof(type))));\
-SP -= sizeof(type);\
+type value = *((type*)(&ctx.stk().at(ctx.SP() - sizeof(type))));\
+ctx.SP() -= sizeof(type);\
 auto ptr = new type(value);\
-size_t adjusted = (size_t)((uint8_t*)(ptr) - memadjust);\
-push(adjusted, stk, SP);
+size_t adjusted = (size_t)((uint8_t*)(ptr) - ctx.memadjust());\
+push(adjusted, ctx.stk(), ctx.SP());
 
 #define deallocatecode(type)\
-size_t tptr = *((size_t*)(&stk.at(SP - sizeof(size_t))));\
-type * value = (type*)((uint8_t*)(tptr) + memadjust);\
-SP -= sizeof(size_t);\
+size_t tptr = *((size_t*)(&ctx.stk().at(ctx.SP() - sizeof(size_t))));\
+type * value = (type*)((uint8_t*)(tptr) + ctx.memadjust());\
+ctx.SP() -= sizeof(size_t);\
 delete value;
 
 #define allocateparraycode(type)\
-size_t length = *((size_t*)(&stk.at(SP -= sizeof(size_t))));\
+size_t length = *((size_t*)(&ctx.stk().at(ctx.SP() -= sizeof(size_t))));\
 type * ptr = new type[length];\
-mparray<type> value(ptr, length);\
-push(value, stk, SP);
+mparray<type> value(storeptr(type, ptr), length);\
+push(value, ctx.stk(), ctx.SP());
 
 #define deallocateparraycode(type)\
-size_t * length = ((size_t*)(&stk.at(SP -= sizeof(size_t))));\
-type * ptr = getmemfullptr(type, &stk[SP -= sizeof(size_t)]);\
+size_t * length = ((size_t*)(&ctx.stk().at(ctx.SP() -= sizeof(size_t))));\
+type * ptr = getmemfullptr(type, &ctx.stk()[ctx.SP() -= sizeof(size_t)]);\
 delete[] ptr;\
 ptr = nullptr;\
 ptr = storeptr(type, ptr);
 
 template<typename T>
-static void allocateparray(std::vector<byte> &stk, size_t &SP, const size_t memadjust)
+static void allocateparray(context &ctx)
 {
 	allocateparraycode(T);
 }
 
 template<typename T>
-static void deallocateparray(std::vector<byte> &stk, size_t &SP, const size_t memadjust)
+static void deallocateparray(context &ctx)
 {
 	deallocateparraycode(T);
 }
 
 template<typename T>
-static void allocateptr(std::vector<byte> &stk, size_t &SP, const size_t memadjust)
+static void allocateptr(context &ctx)
 {
 	allocatecode(T);
 }
 
 template<typename T>
-static void deallocateptr(std::vector<byte> &stk, size_t &SP, const size_t memadjust)
+static void deallocateptr(context &ctx)
 {
 	deallocatecode(T);
 }

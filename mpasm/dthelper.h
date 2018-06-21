@@ -8,9 +8,9 @@
 #include "registers.h"
 
 #define getpvalue(type, IP, value, fb_value) \
-switch ((ML)inst[IP])\
+switch ((ML)ctx.inst()[IP])\
 {\
-	default: value = &reg<type>[inst[IP]]; break;\
+	default: value = &reg<type>[ctx.inst()[IP]]; break;\
 	case ML::Mem:\
 		getmemloc(type, value);\
 		memloc += sizeof(size_t);\
@@ -21,9 +21,9 @@ switch ((ML)inst[IP])\
 }
 
 #define getpvalue_restack(type, IP, value, fb_value) \
-switch ((ML)inst[IP])\
+switch ((ML)ctx.inst()[IP])\
 {\
-	default: value = &reg<type>[inst[IP]]; break;\
+	default: value = &reg<type>[ctx.inst()[IP]]; break;\
 	case ML::Mem:\
 		getmemloc(type, value);\
 		memloc += sizeof(size_t);\
@@ -34,9 +34,9 @@ switch ((ML)inst[IP])\
 }
 
 #define setpvalue(type, IP, value)\
-switch ((ML)inst[IP])\
+switch ((ML)ctx.inst()[IP])\
 {\
-	default: reg<type>[inst[IP]] = static_cast<type>(*value); break;\
+	default: reg<type>[ctx.inst()[IP]] = static_cast<type>(*value); break;\
 	case ML::Mem:\
 		setmemloc(type, value);\
 		memloc += sizeof(size_t);\
@@ -47,15 +47,15 @@ switch ((ML)inst[IP])\
 }
 
 #define pushpvalue(type, IP, value)\
-switch ((ML)inst[IP])\
+switch ((ML)ctx.inst()[IP])\
 {\
-	default: reg<type>[inst[IP]] = static_cast<type>(*value); break;\
+	default: reg<type>[ctx.inst()[IP]] = static_cast<type>(*value); break;\
 	case ML::Mem:\
 		setmemloc(type, value);\
 		memloc += sizeof(size_t);\
 		break;\
 	case ML::Stk:\
-		push(static_cast<type>(*value), stk, SP);\
+		push(static_cast<type>(*value), ctx.stk(), ctx.SP());\
 		break;\
 }
 

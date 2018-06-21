@@ -9,24 +9,12 @@
 #include "ptrfuncs.h"
 #include "valuefuncs.h"
 
-void Run(
-	const std::vector<uint8_t> &inst,
-	size_t &IP,
-	std::vector<byte> &stk,
-	size_t &SP,
-	size_t memadjust
-);
+#include "run_context.h"
 
 #define dtcall(indirection, shorttype, type)\
-void DT##shorttype##(\
-	const std::vector<uint8_t> &inst,\
-	size_t &IP,\
-	std::vector<byte> &stk,\
-	size_t &SP,\
-	size_t memadjust\
-)\
+void DT##shorttype##(context &ctx)\
 {\
-	switch ((OP)inst[IP + 1])\
+	switch ((OP)ctx.inst()[ctx.IP() + 1])\
 	{\
 	case OP::ConvF32:\
 	{\

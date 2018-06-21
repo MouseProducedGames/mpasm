@@ -6,15 +6,10 @@
 
 #include "bytecode.h"
 #include "dthelper.h"
+#include "run_context.h"
 
 #define dtimpl(shorttype)\
-void DT##shorttype##(\
-	const std::vector<uint8_t> &inst,\
-	size_t &IP,\
-	std::vector<byte> &stk,\
-	size_t &SP,\
-	size_t memadjust\
-);
+void DT##shorttype##(context &ctx);
 
 dtimpl(PAF32);
 dtimpl(PF32);

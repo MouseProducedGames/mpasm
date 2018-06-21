@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "run.h"
+#include "run_context.h"
 
 #include <vector>
 
@@ -10,17 +10,17 @@
 #define arraydt(dt) (DT)((uint8_t)DT::Array | (uint8_t)dt)
 
 #define typecall(shorttype)\
-case DT::##shorttype##: DT##shorttype##(inst, IP, stk, SP, memadjust); break;\
-case pdt(DT::##shorttype##): DTP##shorttype##(inst, IP, stk, SP, memadjust); break;\
-case pdt(arraydt(DT::##shorttype##)): DTPA##shorttype##(inst, IP, stk, SP, memadjust); break;\
+case DT::##shorttype##: DT##shorttype##(*this); break;\
+case pdt(DT::##shorttype##): DTP##shorttype##(*this); break;\
+case pdt(arraydt(DT::##shorttype##)): DTPA##shorttype##(*this); break;\
 
-void Run(
+context::context(
 	const std::vector<uint8_t> &inst,
 	size_t &IP,
 	std::vector<byte> &stk,
 	size_t &SP,
 	size_t memadjust
-)
+) : m_inst(inst), m_IP(IP), m_stk(stk), m_SP(SP), m_memadjust(memadjust)
 {
 	while (IP < inst.size())
 	{
@@ -41,4 +41,25 @@ void Run(
 			typecall(UI64);
 		}
 	}
+}
+
+const std::vector<uint8_t> &context::inst()
+{
+	return m_inst;
+}
+size_t &context::IP()
+{
+	return m_IP;
+}
+std::vector<byte> &context::stk()
+{
+	return m_stk;
+}
+size_t &context::SP()
+{
+	return m_SP;
+}
+size_t context::memadjust()
+{
+	return m_memadjust;
 }

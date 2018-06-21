@@ -78,6 +78,9 @@
     <ClInclude Include="DTcalls.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="run_context.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -107,7 +110,7 @@
     <ClCompile Include="syscall.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="run.cpp">
+    <ClCompile Include="run_context.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
