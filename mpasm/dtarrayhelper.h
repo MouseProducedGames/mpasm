@@ -6,7 +6,7 @@
 
 #include "paccess.h"
 
-#define getpavalue(type, IP, value, fb_value)\
+#define getpavalue(type, IP, value)\
 switch ((ML)ctx.inst()[IP])\
 {\
 	default: value = &reg<type>[ctx.inst()[IP]]; break;\
@@ -21,7 +21,7 @@ switch ((ML)ctx.inst()[IP])\
 		break;\
 }
 
-#define getpavalue_restack(type, IP, value, fb_value) \
+#define getpavalue_restack(type, IP, value) \
 switch ((ML)ctx.inst()[IP])\
 {\
 	default: value = &reg<type>[ctx.inst()[IP]]; break;\

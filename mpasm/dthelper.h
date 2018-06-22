@@ -7,7 +7,7 @@
 #include "paccess.h"
 #include "registers.h"
 
-#define getpvalue(type, IP, value, fb_value) \
+#define getpvalue(type, IP, value) \
 switch ((ML)ctx.inst()[IP])\
 {\
 	default: value = &reg<type>[ctx.inst()[IP]]; break;\
@@ -20,7 +20,7 @@ switch ((ML)ctx.inst()[IP])\
 		break;\
 }
 
-#define getpvalue_restack(type, IP, value, fb_value) \
+#define getpvalue_restack(type, IP, value) \
 switch ((ML)ctx.inst()[IP])\
 {\
 	default: value = &reg<type>[ctx.inst()[IP]]; break;\

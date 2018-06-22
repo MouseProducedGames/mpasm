@@ -26,6 +26,8 @@ context::context(
 	{
 		switch ((DT)inst[IP])
 		{
+#pragma warning(push)
+#pragma warning(disable:4063)
 		default: return;
 			typecall(F32);
 			typecall(F64);
@@ -40,6 +42,7 @@ context::context(
 			typecall(UI32);
 			typecall(UI64);
 		}
+#pragma warning(pop)
 	}
 }
 

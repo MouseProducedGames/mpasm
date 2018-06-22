@@ -8,11 +8,9 @@
 #define parrayop(type, op)\
 mparray<type> * pleft;\
 mparray<type> * pright;\
-mparray<type> fb_pleft(nullptr, 0);\
-mparray<type> fb_pright(nullptr, 0);\
 size_t memloc = ctx.IP() + 4;\
-getpavalue_restack(mparray<type>, ctx.IP() + 3, pright, fb_pright);\
-getpavalue(mparray<type>, ctx.IP() + 2, pleft, fb_pleft);\
+getpavalue_restack(mparray<type>, ctx.IP() + 3, pright);\
+getpavalue(mparray<type>, ctx.IP() + 2, pleft);\
 mparray<type> left = *pleft;\
 mparray<type> right = *pright;\
 for (size_t i = 0; i < left.length() && i < right.length(); ++i)\
@@ -24,11 +22,9 @@ ctx.IP() = memloc;
 #define parrayfuncop(type, funcop)\
 mparray<type> * pleft;\
 mparray<type> * pright;\
-mparray<type> fb_pleft(nullptr, 0);\
-mparray<type> fb_pright(nullptr, 0);\
 size_t memloc = ctx.IP() + 4;\
-getpavalue_restack(mparray<type>, ctx.IP() + 3, pright, fb_pright);\
-getpavalue(mparray<type>, ctx.IP() + 2, pleft, fb_pleft);\
+getpavalue_restack(mparray<type>, ctx.IP() + 3, pright);\
+getpavalue(mparray<type>, ctx.IP() + 2, pleft);\
 mparray<type> left = *pleft;\
 mparray<type> right = *pright;\
 for (size_t i = 0; i < left.length() && i < right.length(); ++i)\
@@ -39,9 +35,8 @@ ctx.IP() = memloc;
 
 #define parrayconv(fromtype, totype)\
 mparray<fromtype> * pavalue;\
-mparray<fromtype> fb_pavalue(nullptr, 0);\
 size_t memloc = ctx.IP() + 4;\
-getpavalue(mparray<fromtype>, ctx.IP() + 3, pavalue, fb_pavalue);\
+getpavalue(mparray<fromtype>, ctx.IP() + 3, pavalue);\
 mparray<totype> * patvalue = (mparray<totype>*)pavalue;\
 size_t i = 0;\
 while(i < patvalue->length())\
@@ -54,9 +49,8 @@ ctx.IP() = memloc;
 
 #define parraygosub(type)\
 mparray<uint64_t> * ppanewIP;\
-mparray<uint64_t> fb_ppanewIP(nullptr, 0);\
 uint64_t memloc = ctx.IP() + 4;\
-getpvalue_restack(mparray<uint64_t>, ctx.IP() + 2, ppanewIP, fb_ppanewIP) \
+getpvalue_restack(mparray<uint64_t>, ctx.IP() + 2, ppanewIP) \
 mparray<uint64_t> panewIP = *ppanewIP;\
 size_t i = 0;\
 while(i < panewIP.length())\
@@ -75,12 +69,10 @@ ctx.IP() = memloc;
 
 #define parrayjmpif(type)\
 mparray<uint64_t> * ppanewIP;\
-mparray<uint64_t> fb_ppanewIP(nullptr, 0);\
 type * pjmpcheck;\
-type fb_pjmpcheck = 0;\
 uint64_t memloc = ctx.IP() + 4;\
-getpvalue_restack(mparray<uint64_t>, ctx.IP() + 2, ppanewIP, fb_ppanewIP) \
-getpvalue_restack(type, ctx.IP() + 3, pjmpcheck, fb_pjmpcheck) \
+getpvalue_restack(mparray<uint64_t>, ctx.IP() + 2, ppanewIP) \
+getpvalue_restack(type, ctx.IP() + 3, pjmpcheck) \
 if (*pjmpcheck)\
 {\
 	mparray<uint64_t> panewIP = *ppanewIP;\
@@ -100,9 +92,8 @@ ctx.IP() = memloc;
 
 #define parraypush(type)\
 mparray<type> * value;\
-mparray<type> fb_value(nullptr, 0);\
 size_t memloc = ctx.IP() + 4;\
-getpavalue(mparray<type>, ctx.IP() + 3, value, fb_value);\
+getpavalue(mparray<type>, ctx.IP() + 3, value);\
 pushpavalue(mparray<type>, ctx.IP() + 2, value);\
 ctx.IP() = memloc;
 
@@ -127,9 +118,8 @@ ctx.IP() = memloc;
 
 #define parraysetishortcall(type)\
 uint64_t * value;\
-uint64_t fb_value = (uint64_t)0;\
 size_t memloc = ctx.IP() + 4;\
-getpavalue(uint64_t, ctx.IP() + 2, value, fb_value);\
+getpavalue(uint64_t, ctx.IP() + 2, value);\
 IShortCall = (syscallid)(*value);\
 ctx.IP() = memloc;
 
@@ -140,9 +130,8 @@ ctx.IP() = memloc;
 
 #define parraysyscall(type)\
 mparray<uint64_t> * ppasyscall;\
-mparray<uint64_t> fb_ppasyscall(nullptr, 0);\
 size_t memloc = ctx.IP() + 4;\
-getpavalue_restack(mparray<uint64_t>, ctx.IP() + 2, ppasyscall, fb_ppasyscall);\
+getpavalue_restack(mparray<uint64_t>, ctx.IP() + 2, ppasyscall);\
 mparray<syscallid> pasyscall = *(mparray<syscallid>*)ppasyscall;\
 size_t i = 0;\
 while (i < pasyscall.length())\

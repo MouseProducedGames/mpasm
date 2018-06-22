@@ -24,9 +24,6 @@
     <ClInclude Include="bytecode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="run.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="dtfuncs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -87,12 +84,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mpasm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ai64\syscall_ai64.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ai64\DTAI64.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="registers.cpp">
