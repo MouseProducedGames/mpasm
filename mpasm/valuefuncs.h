@@ -77,7 +77,7 @@ ctx.IP() = memloc;
 size_t memloc = ctx.IP() + 4;\
 getcall<type>(\
 	(syscallid)(*(uint8_t*)(&ctx.inst()[ctx.IP() + 2])),\
-	(uint64_t)(*(uint8_t*)(&ctx.inst()[ctx.IP() + 3])),\
+	(uint64_t)(*(uint8_t*)(&ctx.inst()[ctx.IP() + 3]))\
 )(ctx);\
 ctx.IP() = memloc;
 

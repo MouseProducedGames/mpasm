@@ -51,7 +51,7 @@ const syscallfunc &getshortcall(
 template<>\
 const syscallfunc &getcall<type>(\
 	const syscallid &syscall,\
-	const uint64_t &subcall,\
+	const uint64_t &subcall\
 	)\
 {\
 	switch (syscall)\
@@ -142,7 +142,7 @@ const syscallfunc &getshortcall<type*>(\
 template<>\
 const syscallfunc &getcall<mparray<type>>(\
 	const syscallid &syscall,\
-	const uint64_t &subcall,\
+	const uint64_t &subcall\
 )\
 {\
 	switch (syscall)\
