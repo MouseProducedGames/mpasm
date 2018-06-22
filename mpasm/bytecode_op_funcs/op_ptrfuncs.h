@@ -1,7 +1,7 @@
 #ifndef MPASM_MPASM_PTRFUNCS_H
 
-#include "dthelper.h"
-#include "paccess.h"
+#include "data_helpers/data_helper.h"
+#include "data_helpers/data_access.h"
 
 #define ptrop(type, op)\
 type * pleft;\

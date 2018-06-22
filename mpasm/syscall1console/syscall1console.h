@@ -1,10 +1,7 @@
 #ifndef MPASM_MPASM_SYSCALL1CONSOLE_H
 #define MPASM_MPASM_SYSCALL1CONSOLE_H
 
-#include "syscall.h"
-#include "syscall1console/consoleparrayfuncs.h"
-#include "syscall1console/consoleptrfuncs.h"
-#include "syscall1console/consolevaluefuncs.h"
+#include "../syscalls/syscall.h"
 
 enum class syscall1op : uint64_t
 {
@@ -22,15 +19,6 @@ const syscallfunc &getsyscall1_console<int64_t>(const syscall1op &op);
 
 template<>
 const syscallfunc &getsyscall1_console<float64_t>(const syscall1op &op);
-
-template<typename T>
-static syscallfunc getkey_func;
-template<typename T>
-static syscallfunc read_func;
-template<typename T>
-static syscallfunc write_func;
-template<typename T>
-static syscallfunc writechar_func;
 
 // We store the funcs in a variable, otherwise it complains of a local variable.
 #define consolegetcalls(indirection, type, innertype, format)\

@@ -1,11 +1,14 @@
 #include "stdafx.h"
 #include "syscall.h"
 
-#include "dthelper.h"
-#include "dtarrayhelper.h"
+#include "data_helpers/data_helper.h"
+#include "data_helpers/data_arrayhelper.h"
+#include "syscall1console/syscall1console.h"
+#include "syscall2memory/syscall2memory.h"
+#include "sys_parray_calls.h"
+#include "sys_ptr_calls.h"
+#include "sys_value_calls.h"
 #include "run_context.h"
-#include "syscall1console.h"
-#include "syscall2memory.h"
 
 syscallid IShortCall = syscallid::Console;
 

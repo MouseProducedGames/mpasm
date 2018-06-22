@@ -2,7 +2,6 @@
 #define MPASM_MPASM_MPARRAY_H
 
 #include "stdafx.h"
-#include "ptrfuncs.h"
 
 template<typename T>
 class mparray

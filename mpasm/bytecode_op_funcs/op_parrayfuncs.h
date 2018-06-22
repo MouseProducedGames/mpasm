@@ -1,9 +1,8 @@
 #ifndef MPASM_MPASM_PARRAYUNCS_H
 #define MPASM_MPASM_PARRAYUNCS_H
 
-#include "dtarrayhelper.h"
+#include "data_helpers/data_arrayhelper.h"
 #include "mparray.h"
-#include "ptrfuncs.h"
 
 #define parrayop(type, op)\
 mparray<type> * pleft;\

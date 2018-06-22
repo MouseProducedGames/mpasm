@@ -1,11 +1,6 @@
 #ifndef MPASM_MPASM_CONSOLEPARRAYFUNCS_H
 #define MPASM_MPASM_CONSOLEPARRAYFUNCS_H
 
-#include "stdafx.h"
-
-#include <iostream>
-#include <string>
-
 #define parraygetkey(type)\
 size_t length = *((size_t*)(&ctx.stk().at(ctx.SP() -= sizeof(size_t))));\
 size_t tptr = *((size_t*)(&ctx.stk().at(ctx.SP() -= sizeof(size_t))));\

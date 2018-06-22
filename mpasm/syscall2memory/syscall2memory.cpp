@@ -1,13 +1,19 @@
 #include "stdafx.h"
 #include "syscall2memory.h"
 
-#include <conio.h>
-#include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-
-#include "dthelper.h"
+#include "memoryparraycalls.h"
+#include "memoryptrcalls.h"
 #include "mparray.h"
+
+template<typename T>
+syscallfunc allocate_func;
+template<typename T>
+syscallfunc deallocate_func;
+
+template<typename T>
+syscallfunc allocateparray_func;
+template<typename T>
+syscallfunc deallocateparray_func;
 
 memoryptrcalls(float32_t);
 memoryptrcalls(float64_t);

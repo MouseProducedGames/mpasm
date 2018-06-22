@@ -1,32 +1,30 @@
-#ifndef MPASM_MPASM_DTARRAYHELPER_H
-#define MPASM_MPASM_DTARRAYHELPER_H
+#ifndef MPASM_MPASM_DTHELPER_H
+#define MPASM_MPASM_DTHELPER_H
 
-#include "stdafx.h"
 #include <vector>
 
-#include "paccess.h"
+#include "data_access.h"
+#include "registers.h"
 
-#define getpavalue(type, IP, value)\
+#define getpvalue(type, IP, value) \
 switch ((ML)ctx.inst()[IP])\
 {\
 	default: value = &reg<type>[ctx.inst()[IP]]; break;\
 	case ML::Mem:\
-	{\
-		value = loadptr(type, ctx.inst()[memloc]);\
+		getmemloc(type, value);\
 		memloc += sizeof(size_t);\
-	}\
-	break;\
+		break;\
 	case ML::Stk:\
 		value = getstk(type);\
 		break;\
 }
 
-#define getpavalue_restack(type, IP, value) \
+#define getpvalue_restack(type, IP, value) \
 switch ((ML)ctx.inst()[IP])\
 {\
 	default: value = &reg<type>[ctx.inst()[IP]]; break;\
 	case ML::Mem:\
-		value = loadptr(type, ctx.inst()[memloc]);\
+		getmemloc(type, value);\
 		memloc += sizeof(size_t);\
 		break;\
 	case ML::Stk:\
@@ -34,7 +32,7 @@ switch ((ML)ctx.inst()[IP])\
 		break;\
 }
 
-#define setpavalue(type, IP, value)\
+#define setpvalue(type, IP, value)\
 switch ((ML)ctx.inst()[IP])\
 {\
 	default: reg<type>[ctx.inst()[IP]] = static_cast<type>(*value); break;\
@@ -47,20 +45,18 @@ switch ((ML)ctx.inst()[IP])\
 		break;\
 }
 
-#define pushpavalue(type, IP, value)\
+#define pushpvalue(type, IP, value)\
 switch ((ML)ctx.inst()[IP])\
 {\
 	default: reg<type>[ctx.inst()[IP]] = static_cast<type>(*value); break;\
 	case ML::Mem:\
-	{\
 		setmemloc(type, value);\
 		memloc += sizeof(size_t);\
 		break;\
-	}\
 	case ML::Stk:\
 		push(static_cast<type>(*value), ctx.stk(), ctx.SP());\
 		break;\
 }
 
-#endif // !MPASM_MPASM_DTARRAYHELPER_H
+#endif // !MPASM_MPASM_DTHELPER_H
 

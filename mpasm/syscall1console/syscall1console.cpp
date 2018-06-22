@@ -3,10 +3,21 @@
 
 #include <conio.h>
 #include <iostream>
+#include <string>
 
+#include "consoleparrayfuncs.h"
+#include "consoleptrfuncs.h"
 #include "consolevaluefuncs.h"
-#include "dthelper.h"
-#include "mparray.h"
+#include "data_helpers/data_access.h"
+
+template<typename T>
+static syscallfunc getkey_func;
+template<typename T>
+static syscallfunc read_func;
+template<typename T>
+static syscallfunc write_func;
+template<typename T>
+static syscallfunc writechar_func;
 
 consolegetcalls(parray, mparray<float32_t>, float32_t, "%g");
 consolegetcalls(ptr, float32_t*, float32_t, "%g");

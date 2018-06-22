@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "bytecode.h"
-#include "dtfuncs.h"
+#include "bytecode_op_funcs/op_calls.h"
 
 #define pdt(dt) (DT)((uint8_t)DT::Ptr | (uint8_t)dt)
 #define arraydt(dt) (DT)((uint8_t)DT::Array | (uint8_t)dt)

@@ -15,4 +15,17 @@
 
 #define popstk(type) ((type*)(&ctx.stk()[ctx.SP() -= sizeof(type)]))
 
+template<typename T>
+void push(const T &value, std::vector<byte> &stk, size_t &SP)
+{
+	size_t size = SP + sizeof(T);
+	if (size > stk.size())
+	{
+		stk.resize(size);
+	}
+	T* back = ((T*)(&stk.at(SP)));
+	*back = value;
+	SP += sizeof(T);
+}
+
 #endif // !MPASM_MPASM_PACCESS_H

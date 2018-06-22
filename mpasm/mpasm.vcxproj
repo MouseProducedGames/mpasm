@@ -166,32 +166,37 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="bytecode.h" />
-    <ClInclude Include="DTcalls.h" />
-    <ClInclude Include="dtfuncs.h" />
-    <ClInclude Include="dthelper.h" />
-    <ClInclude Include="paccess.h" />
-    <ClInclude Include="ptrfuncs.h" />
+    <ClInclude Include="bytecode_op_funcs\op_calls_impl.h" />
+    <ClInclude Include="bytecode_op_funcs\op_calls.h" />
+    <ClInclude Include="data_helpers\data_helper.h" />
+    <ClInclude Include="data_helpers\data_access.h" />
+    <ClInclude Include="bytecode_op_funcs\op_ptrfuncs.h" />
     <ClInclude Include="registers.h" />
     <ClInclude Include="run_context.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="syscall.h" />
-    <ClInclude Include="syscall1console.h" />
-    <ClInclude Include="arrayfuncs.h" />
+    <ClInclude Include="syscalls\syscall.h" />
+    <ClInclude Include="syscall1console\syscall1console.h" />
+    <ClInclude Include="bytecode_op_funcs\op_arrayfuncs.h" />
     <ClInclude Include="syscall1console\consoleparrayfuncs.h" />
     <ClInclude Include="syscall1console\consoleptrfuncs.h" />
     <ClInclude Include="syscall1console\consolevaluefuncs.h" />
     <ClInclude Include="mparray.h" />
-    <ClInclude Include="parrayfuncs.h" />
-    <ClInclude Include="dtarrayhelper.h" />
-    <ClInclude Include="valuefuncs.h" />
-    <ClInclude Include="syscall2memory.h" />
+    <ClInclude Include="bytecode_op_funcs\op_parrayfuncs.h" />
+    <ClInclude Include="data_helpers\data_arrayhelper.h" />
+    <ClInclude Include="syscall2memory\memoryparraycalls.h" />
+    <ClInclude Include="syscall2memory\memoryptrcalls.h" />
+    <ClInclude Include="bytecode_op_funcs\op_valuefuncs.h" />
+    <ClInclude Include="syscall2memory\syscall2memory.h" />
+    <ClInclude Include="syscalls\sys_parray_calls.h" />
+    <ClInclude Include="syscalls\sys_ptr_calls.h" />
+    <ClInclude Include="syscalls\sys_value_calls.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DTcalls.cpp" />
+    <ClCompile Include="bytecode_op_funcs\op_calls.cpp" />
     <ClCompile Include="mpasm.cpp" />
     <ClCompile Include="run_context.cpp" />
-    <ClCompile Include="syscall.cpp" />
+    <ClCompile Include="syscalls\syscall.cpp" />
     <ClCompile Include="registers.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

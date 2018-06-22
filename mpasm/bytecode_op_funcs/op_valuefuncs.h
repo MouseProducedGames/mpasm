@@ -1,9 +1,6 @@
 #ifndef MPASM_MPASM_VALUEFUNCS_H
 #define MPASM_MPASM_VALUEFUNCS_H
 
-#include "dtfuncs.h"
-#include "ptrfuncs.h"
-
 #define valueop(type, op)\
 type * left;\
 type * right;\

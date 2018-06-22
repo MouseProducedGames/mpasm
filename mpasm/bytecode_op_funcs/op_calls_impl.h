@@ -2,16 +2,16 @@
 #define MPASM_MPASM_DTCALLS_H
 
 #include "stdafx.h"
-#include "dtfuncs.h"
+#include "op_calls.h"
 
-#include "syscall.h"
-#include "parrayfuncs.h"
-#include "ptrfuncs.h"
-#include "valuefuncs.h"
+#include "../syscalls/syscall.h"
+#include "bytecode_op_funcs/op_parrayfuncs.h"
+#include "bytecode_op_funcs/op_ptrfuncs.h"
+#include "bytecode_op_funcs/op_valuefuncs.h"
 
 #include "run_context.h"
 
-#define dtcall(indirection, shorttype, type)\
+#define op_call(indirection, shorttype, type)\
 void DT##shorttype##(context &ctx)\
 {\
 	switch ((OP)ctx.inst()[ctx.IP() + 1])\

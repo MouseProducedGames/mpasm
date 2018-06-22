@@ -1,8 +1,6 @@
 #ifndef MPASM_MPASM_ARRAYFUNCS_H
 #define MPASM_MPASM_ARRAYFUNCS_H
 
-#include "dtfuncs.h"
-
 #define valueop(type, op)\
 size_t * length;\
 size_t memloc = IP + 4;\
