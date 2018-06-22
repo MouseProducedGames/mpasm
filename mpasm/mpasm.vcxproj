@@ -187,6 +187,7 @@
     <ClInclude Include="syscall2memory\memoryptrcalls.h" />
     <ClInclude Include="bytecode_op_funcs\op_valuefuncs.h" />
     <ClInclude Include="syscall2memory\syscall2memory.h" />
+    <ClInclude Include="syscalls\syscallid.h" />
     <ClInclude Include="syscalls\sys_parray_calls.h" />
     <ClInclude Include="syscalls\sys_ptr_calls.h" />
     <ClInclude Include="syscalls\sys_value_calls.h" />

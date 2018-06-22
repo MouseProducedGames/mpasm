@@ -93,6 +93,9 @@
     <ClInclude Include="syscalls\sys_ptr_calls.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="syscalls\syscallid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

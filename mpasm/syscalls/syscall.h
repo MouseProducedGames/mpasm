@@ -7,12 +7,7 @@
 #include "bytecode.h"
 #include "mparray.h"
 #include "run_context.h"
-
-enum class syscallid : uint64_t
-{
-	Console = 1,
-	Memory
-};
+#include "syscallid.h"
 
 /* Default setting is Console/Terminal.
 * If no Console/Terminal is available on the hardware, then provide a null
