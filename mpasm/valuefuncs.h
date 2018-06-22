@@ -84,8 +84,7 @@ ctx.IP() = memloc;
 #define valuequickshortcall(type)\
 size_t memloc = ctx.IP() + 4;\
 getquickshortcall<type>(\
-	(uint64_t)(*(uint16_t*)(&ctx.inst()[ctx.IP() + 2])),\
-	ctx\
+	(uint64_t)(*(uint16_t*)(&ctx.inst()[ctx.IP() + 2]))\
 )(ctx);\
 ctx.IP() = memloc;
 

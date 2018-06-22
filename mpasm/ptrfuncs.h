@@ -94,10 +94,7 @@ ctx.IP() = memloc;
 uint64_t * pvalue = (uint64_t*)((uint16_t*)&ctx.inst()[ctx.IP() + 2]);\
 uint64_t * pvvalue = getmemfullptr(uint64_t, pvalue);\
 size_t memloc = ctx.IP() + 4;\
-getquickshortcall<type*>(\
-	*pvvalue,\
-	ctx\
-	)(ctx);\
+getquickshortcall<type*>(*pvvalue)(ctx);\
 ctx.IP() = memloc;
 
 #define ptrsetishortcall(type)\

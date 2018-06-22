@@ -30,8 +30,7 @@ const syscallfunc &getcall(
 
 template<typename T>
 const syscallfunc &getquickshortcall(
-	const uint64_t &subcall,
-	context &ctx
+	const uint64_t &subcall
 );
 
 template<typename T>
@@ -64,8 +63,7 @@ const syscallfunc &getcall<type>(\
 \
 template<>\
 const syscallfunc &getquickshortcall<type>(\
-	const uint64_t &subcall,\
-	context &ctx\
+	const uint64_t &subcall\
 	)\
 {\
 	return getcall<type>(IShortCall, subcall);\
@@ -109,8 +107,7 @@ const syscallfunc &getcall<type*>(\
 \
 template<>\
 const syscallfunc &getquickshortcall<type*>(\
-	const uint64_t &subcall,\
-	context &ctx\
+	const uint64_t &subcall\
 )\
 {\
 	return getcall<type*>(IShortCall, subcall);\
@@ -155,8 +152,7 @@ const syscallfunc &getcall<mparray<type>>(\
 \
 template<>\
 const syscallfunc &getquickshortcall<mparray<type>>(\
-	const uint64_t &subcall,\
-	context &ctx\
+	const uint64_t &subcall\
 )\
 {\
 	return getcall<mparray<type>>(IShortCall, subcall);\
