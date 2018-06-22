@@ -25,16 +25,13 @@ typedef void (*syscallfunc)(context &ctx);
 template<typename T>
 const syscallfunc &getcall(
 	const syscallid &syscall,
-	const uint64_t &subcall,
-	context &ctx,
-	size_t &memloc
+	const uint64_t &subcall
 );
 
 template<typename T>
 const syscallfunc &getquickshortcall(
 	const uint64_t &subcall,
-	context &ctx,
-	size_t &memloc
+	context &ctx
 );
 
 template<typename T>
@@ -55,8 +52,6 @@ template<>\
 const syscallfunc &getcall<type>(\
 	const syscallid &syscall,\
 	const uint64_t &subcall,\
-	context &ctx,\
-	size_t &memloc\
 	)\
 {\
 	switch (syscall)\
@@ -70,11 +65,10 @@ const syscallfunc &getcall<type>(\
 template<>\
 const syscallfunc &getquickshortcall<type>(\
 	const uint64_t &subcall,\
-	context &ctx,\
-	size_t &memloc\
+	context &ctx\
 	)\
 {\
-	return getcall<type>(IShortCall, subcall, ctx, memloc);\
+	return getcall<type>(IShortCall, subcall);\
 }\
 \
 template<>\
@@ -85,9 +79,8 @@ const syscallfunc &getsyscall<type>(\
 	)\
 {\
 	uint64_t * subcall;\
-	uint64_t fb_subcall = 0;\
-	getpvalue_restack(uint64_t, ctx.IP() + 2, subcall, fb_subcall);\
-	return getcall<type>(id, *subcall, ctx, memloc);\
+	getpvalue_restack(uint64_t, ctx.IP() + 2, subcall);\
+	return getcall<type>(id, *subcall);\
 }\
 \
 template<>\
@@ -103,9 +96,7 @@ const syscallfunc &getshortcall<type>(\
 template<>\
 const syscallfunc &getcall<type*>(\
 	const syscallid &syscall,\
-	const uint64_t &subcall,\
-	context &ctx,\
-	size_t &memloc\
+	const uint64_t &subcall\
 )\
 {\
 	switch (syscall)\
@@ -119,11 +110,10 @@ const syscallfunc &getcall<type*>(\
 template<>\
 const syscallfunc &getquickshortcall<type*>(\
 	const uint64_t &subcall,\
-	context &ctx,\
-	size_t &memloc\
+	context &ctx\
 )\
 {\
-	return getcall<type*>(IShortCall, subcall, ctx, memloc);\
+	return getcall<type*>(IShortCall, subcall);\
 }\
 \
 template<>\
@@ -134,10 +124,9 @@ const syscallfunc &getsyscall<type*>(\
 )\
 {\
 	uint64_t * psubcall;\
-	uint64_t fb_psubcall = 0;\
-	getpvalue_restack(uint64_t, ctx.IP() + 2, psubcall, fb_psubcall);\
+	getpvalue_restack(uint64_t, ctx.IP() + 2, psubcall);\
 	uint64_t * pvsubcall = getmemfullptr(uint64_t, psubcall);\
-	return getcall<type*>(id, *pvsubcall, ctx, memloc);\
+	return getcall<type*>(id, *pvsubcall);\
 }\
 \
 template<>\
@@ -154,8 +143,6 @@ template<>\
 const syscallfunc &getcall<mparray<type>>(\
 	const syscallid &syscall,\
 	const uint64_t &subcall,\
-	context &ctx,\
-	size_t &memloc\
 )\
 {\
 	switch (syscall)\
@@ -169,11 +156,10 @@ const syscallfunc &getcall<mparray<type>>(\
 template<>\
 const syscallfunc &getquickshortcall<mparray<type>>(\
 	const uint64_t &subcall,\
-	context &ctx,\
-	size_t &memloc\
+	context &ctx\
 )\
 {\
-	return getcall<mparray<type>>(IShortCall, subcall, ctx, memloc);\
+	return getcall<mparray<type>>(IShortCall, subcall);\
 }\
 \
 template<>\
@@ -184,9 +170,8 @@ const syscallfunc &getsyscall<mparray<type>>(\
 )\
 {\
 	uint64_t * subcall;\
-	uint64_t fb_subcall = 0;\
-	getpvalue_restack(uint64_t, ctx.IP() + 2, subcall, fb_subcall);\
-	return getcall<mparray<type>>(id, *subcall, ctx, memloc);\
+	getpvalue_restack(uint64_t, ctx.IP() + 2, subcall);\
+	return getcall<mparray<type>>(id, *subcall);\
 }\
 \
 template<>\

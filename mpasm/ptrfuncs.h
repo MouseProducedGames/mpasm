@@ -87,8 +87,6 @@ size_t memloc = ctx.IP() + 4;\
 getcall<type*>(\
 	(syscallid)(*(uint8_t*)(&ctx.inst()[ctx.IP() + 2])),\
 	(uint64_t)(*(uint8_t*)(&ctx.inst()[ctx.IP() + 3])),\
-	ctx,\
-	memloc\
 )(ctx);\
 ctx.IP() = memloc;
 
@@ -98,8 +96,7 @@ uint64_t * pvvalue = getmemfullptr(uint64_t, pvalue);\
 size_t memloc = ctx.IP() + 4;\
 getquickshortcall<type*>(\
 	*pvvalue,\
-	ctx,\
-	memloc\
+	ctx\
 	)(ctx);\
 ctx.IP() = memloc;
 

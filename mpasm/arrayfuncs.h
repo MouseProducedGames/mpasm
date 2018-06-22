@@ -58,7 +58,7 @@ getcall<type>(\
 	(uint64_t)(*(uint8_t*)(&inst[IP + 3])),\
 	inst, IP,\
 	stk, SP,\
-	memadjust, memloc\
+	memadjust\
 )(stk, SP, memadjust);\
 IP = memloc;
 
@@ -68,7 +68,7 @@ getquickshortcall<type>(\
 	(uint64_t)(*(uint16_t*)(&inst[IP + 2])),\
 	inst, IP,\
 	stk, SP,\
-	memadjust, memloc\
+	memadjust\
 )(stk, SP, memadjust);\
 IP = memloc;
 

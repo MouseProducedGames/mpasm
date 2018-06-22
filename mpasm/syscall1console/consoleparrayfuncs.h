@@ -32,7 +32,10 @@ mparray<type> value(ptr, s.length());\
 push(value, ctx.stk(), ctx.SP());
 
 #define parraywrite(type, format)\
-size_t length = *((size_t*)(&ctx.stk().at(ctx.SP() -= sizeof(size_t))));\
+/* We don't need the length of the array.
+ * However, we do need to pop it off the stack.
+ */\
+ctx.SP() -= sizeof(size_t);\
 size_t tptr = *((size_t*)(&ctx.stk().at(ctx.SP() -= sizeof(size_t))));\
 static const size_t BUFFER_COUNT = 255;\
 char buffer[BUFFER_COUNT];\

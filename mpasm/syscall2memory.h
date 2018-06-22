@@ -44,7 +44,10 @@ mparray<type> value(storeptr(type, ptr), length);\
 push(value, ctx.stk(), ctx.SP());
 
 #define deallocateparraycode(type)\
-size_t * length = ((size_t*)(&ctx.stk().at(ctx.SP() -= sizeof(size_t))));\
+/* We don't need the length of the array.
+* However, we do need to pop it off the stack.
+*/\
+ctx.SP() -= sizeof(size_t); \
 type * ptr = getmemfullptr(type, &ctx.stk()[ctx.SP() -= sizeof(size_t)]);\
 delete[] ptr;\
 ptr = nullptr;\
