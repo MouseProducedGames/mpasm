@@ -1,3 +1,8 @@
+/*
+* Copyright 2018 Mouse-Produced Games.
+* Distributed under the terms of the GNU Lesser General Public Liceense (Version 3, 29 June 2007)
+*/
+
 #ifndef MPASM_MPASM_CONSOLEPARRAYFUNCS_H
 #define MPASM_MPASM_CONSOLEPARRAYFUNCS_H
 
@@ -5,7 +10,7 @@
 size_t length = *((size_t*)(&ctx.stk().at(ctx.SP() -= sizeof(size_t))));\
 size_t tptr = *((size_t*)(&ctx.stk().at(ctx.SP() -= sizeof(size_t))));\
 type * ptr = (type*)(size_t*)((uint8_t*)(tptr) + ctx.memadjust());\
-mparray<type> value(ptr, length);\
+parray<type> value(ptr, length);\
 size_t i = 0;\
 while (i < value.length())\
 {\
@@ -23,7 +28,7 @@ while (i < s.length())\
 	++i;\
 }\
 ptr = storeptr(type, ptr);\
-mparray<type> value(ptr, s.length());\
+parray<type> value(ptr, s.length());\
 push(value, ctx.stk(), ctx.SP());
 
 #define parraywrite(type, format)\
@@ -41,7 +46,7 @@ printf(buffer);
 size_t length = *((size_t*)(&ctx.stk().at(ctx.SP() -= sizeof(size_t)))); \
 type * tptr = ((type*)(&ctx.stk().at(ctx.SP() -= sizeof(size_t))));\
 type * ptr = getmemfullptr(type, tptr);\
-mparray<type> value(ptr, length);\
+parray<type> value(ptr, length);\
 size_t i = 0;\
 while (i < value.length() && value[i] != '\0')\
 {\

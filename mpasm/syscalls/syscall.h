@@ -1,3 +1,8 @@
+/*
+* Copyright 2018 Mouse-Produced Games.
+* Distributed under the terms of the GNU Lesser General Public Liceense (Version 3, 29 June 2007)
+*/
+
 #ifndef MPASM_MPASM_SYSCALL_H
 #define MPASM_MPASM_SYSCALL_H
 
@@ -5,7 +10,7 @@
 #include <vector>
 
 #include "bytecode.h"
-#include "mparray.h"
+#include "parray.h"
 #include "run_context.h"
 #include "syscallid.h"
 

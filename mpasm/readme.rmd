@@ -1,0 +1,30 @@
+---
+title: "Multi-Platform Assembly project (MPASM)"
+output: html_document
+---
+
+* Current version: v0.0.6
+* Current status: Tech demo
+
+# About
+
+The Multi-Platform Assemly (MPASM) is a runtime and bytecode designed to be able to run on
+ PC, Linux, MacOS, consoles, and most tablets. In short, anything with a keyboard, mouse, and screen; or analogues, 
+including on-screen substitutes. At the moment, only Windows on x64 is supported.
+The intent of MPASM is to be a viable compliation target for programming languages, 
+which then allows those programs to run on any platform with an MPASM runtime.
+
+Now that I've gotten done summerizing runtimes for those of you who are unfamiliar with them, 
+I should talk about what makes this one different.
+As a runtime, MPASM is analogous to a virtual CPU layer.
+As such, the goals of MPASM include:
+
+* Very lightweight. The current MPASM release is 190 KB.
+* No garbage collection.
+* Very minimal overhead.
+* No artificial restrictions on what programs can be run.
+
+MPASM is released under the terms of the Lesser GNU General Public License (Version 3, 29 June 2007).
+
+The official MPASM release, aside from being fully-functional,
+is also a reference from which anyone can implement their own version of MPASM, and sell programs which run on MPASM.

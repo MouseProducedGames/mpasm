@@ -1,13 +1,18 @@
+/*
+* Copyright 2018 Mouse-Produced Games.
+* Distributed under the terms of the GNU Lesser General Public Liceense (Version 3, 29 June 2007)
+*/
+
 #ifndef MPASM_MPASM_PARRAYCALLS_H
 #define MPASM_MPASM_PARRAYCALLS_H
 
-#include "syscall2memory.h"
+#include "syscall_memory.h"
 #include "data_helpers/data_access.h"
 
 #define allocateparraycode(type)\
 size_t length = *((size_t*)(&ctx.stk().at(ctx.SP() -= sizeof(size_t))));\
 type * ptr = new type[length];\
-mparray<type> value(storeptr(type, ptr), length);\
+parray<type> value(storeptr(type, ptr), length);\
 push(value, ctx.stk(), ctx.SP());
 
 #define deallocateparraycode(type)\
@@ -34,13 +39,13 @@ static void deallocateparray(context &ctx)
 
 #define memoryparraycalls(type)\
 template<>\
-const syscallfunc& getsyscall2_memory<mparray<type>>(const syscall2op &op)\
+const syscallfunc& getsyscall2_memory<parray<type>>(const memory_op &op)\
 {\
 	switch (op)\
 	{\
 	default: throw std::exception("null system call");\
-	case syscall2op::Allocate: return (allocateparray_func<type*> = &allocateparray<type*>);\
-	case syscall2op::Deallocate: return (deallocateparray_func<type*> = &deallocateparray<type*>);\
+	case memory_op::Allocate: return (allocateparray_func<type*> = &allocateparray<type*>);\
+	case memory_op::Deallocate: return (deallocateparray_func<type*> = &deallocateparray<type*>);\
 	}\
 }
 

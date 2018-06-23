@@ -1,9 +1,14 @@
+/*
+* Copyright 2018 Mouse-Produced Games.
+* Distributed under the terms of the GNU Lesser General Public Liceense (Version 3, 29 June 2007)
+*/
+
 #include "stdafx.h"
-#include "syscall2memory.h"
+#include "syscall_memory.h"
 
 #include "memoryparraycalls.h"
 #include "memoryptrcalls.h"
-#include "mparray.h"
+#include "parray.h"
 
 template<typename T>
 syscallfunc allocate_func;

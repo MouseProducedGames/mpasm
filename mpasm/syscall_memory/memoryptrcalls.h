@@ -1,7 +1,12 @@
+/*
+* Copyright 2018 Mouse-Produced Games.
+* Distributed under the terms of the GNU Lesser General Public Liceense (Version 3, 29 June 2007)
+*/
+
 #ifndef MPASM_MPASM_MEMORYPTRCALLS_H
 #define MPASM_MPASM_MEMORYPTRCALLS_H
 
-#include "syscall2memory.h"
+#include "syscall_memory.h"
 #include "data_helpers/data_access.h"
 
 #define allocatecode(type)\
@@ -29,13 +34,13 @@ static void deallocateptr(context &ctx)
 
 #define memoryptrcalls(type)\
 template<>\
-const syscallfunc& getsyscall2_memory<type>(const syscall2op &op)\
+const syscallfunc& getsyscall2_memory<type>(const memory_op &op)\
 {\
 	switch (op)\
 	{\
 	default: throw std::exception("null system call");\
-	case syscall2op::Allocate: return (allocate_func<type> = &allocateptr<type>);\
-	case syscall2op::Deallocate: return (deallocate_func<type> = &deallocateptr<type>);\
+	case memory_op::Allocate: return (allocate_func<type> = &allocateptr<type>);\
+	case memory_op::Deallocate: return (deallocate_func<type> = &deallocateptr<type>);\
 	}\
 }
 

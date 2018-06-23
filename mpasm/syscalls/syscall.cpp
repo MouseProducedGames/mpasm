@@ -1,10 +1,15 @@
+/*
+* Copyright 2018 Mouse-Produced Games.
+* Distributed under the terms of the GNU Lesser General Public Liceense (Version 3, 29 June 2007)
+*/
+
 #include "stdafx.h"
 #include "syscall.h"
 
 #include "data_helpers/data_helper.h"
-#include "data_helpers/data_arrayhelper.h"
-#include "syscall1console/syscall1console.h"
-#include "syscall2memory/syscall2memory.h"
+#include "data_helpers/data_parrayhelper.h"
+#include "syscall_console/syscall_console.h"
+#include "syscall_memory/syscall_memory.h"
 #include "sys_parray_calls.h"
 #include "sys_ptr_calls.h"
 #include "sys_value_calls.h"

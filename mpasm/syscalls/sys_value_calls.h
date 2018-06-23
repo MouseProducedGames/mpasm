@@ -1,3 +1,8 @@
+/*
+* Copyright 2018 Mouse-Produced Games.
+* Distributed under the terms of the GNU Lesser General Public Liceense (Version 3, 29 June 2007)
+*/
+
 #ifndef MPASM_MPASM_SYSCALLS_SYS_VALUE_CALLS_H
 #define MPASM_MPASM_SYSCALLS_SYS_VALUE_CALLS_H
 
@@ -11,8 +16,8 @@ const syscallfunc &getcall<type>(\
 	switch (syscall)\
 	{\
 	default: throw std::exception("null system call");\
-	case syscallid::Console: return getsyscall1_console<type>((const syscall1op)(subcall));\
-	case syscallid::Memory: return getsyscall2_memory<type>((const syscall2op)(subcall));\
+	case syscallid::Console: return getsyscall1_console<type>((const console_op)(subcall));\
+	case syscallid::Memory: return getsyscall2_memory<type>((const memory_op)(subcall));\
 	}\
 }\
 \

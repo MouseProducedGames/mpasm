@@ -1,7 +1,12 @@
+/*
+* Copyright 2018 Mouse-Produced Games.
+* Distributed under the terms of the GNU Lesser General Public Liceense (Version 3, 29 June 2007)
+*/
+
 #include "stdafx.h"
 #include "registers.h"
 
-#include "mparray.h"
+#include "parray.h"
 
 template<> float32_t reg<float32_t>[255];
 template<> float64_t reg<float64_t>[255];
@@ -16,15 +21,15 @@ template<> uint16_t reg<uint16_t>[255];
 template<> uint32_t reg<uint32_t>[255];
 template<> uint64_t reg<uint64_t>[255];
 
-template<> mparray<float32_t> reg<mparray<float32_t>>[255];
-template<> mparray<float64_t> reg<mparray<float64_t>>[255];
+template<> parray<float32_t> reg<parray<float32_t>>[255];
+template<> parray<float64_t> reg<parray<float64_t>>[255];
 
-template<> mparray<int8_t> reg<mparray<int8_t>>[255];
-template<> mparray<int16_t> reg<mparray<int16_t>>[255];
-template<> mparray<int32_t> reg<mparray<int32_t>>[255];
-template<> mparray<int64_t> reg<mparray<int64_t>>[255];
+template<> parray<int8_t> reg<parray<int8_t>>[255];
+template<> parray<int16_t> reg<parray<int16_t>>[255];
+template<> parray<int32_t> reg<parray<int32_t>>[255];
+template<> parray<int64_t> reg<parray<int64_t>>[255];
 
-template<> mparray<uint8_t> reg<mparray<uint8_t>>[255];
-template<> mparray<uint16_t> reg<mparray<uint16_t>>[255];
-template<> mparray<uint32_t> reg<mparray<uint32_t>>[255];
-template<> mparray<uint64_t> reg<mparray<uint64_t>>[255];
+template<> parray<uint8_t> reg<parray<uint8_t>>[255];
+template<> parray<uint16_t> reg<parray<uint16_t>>[255];
+template<> parray<uint32_t> reg<parray<uint32_t>>[255];
+template<> parray<uint64_t> reg<parray<uint64_t>>[255];

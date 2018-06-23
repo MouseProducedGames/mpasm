@@ -24,28 +24,10 @@
     <ClInclude Include="bytecode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="syscall1console\consoleptrfuncs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="syscall1console\consolevaluefuncs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="mparray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="syscall1console\consoleparrayfuncs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="registers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="run_context.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="syscall2memory\memoryptrcalls.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="syscall2memory\memoryparraycalls.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bytecode_op_funcs\op_arrayfuncs.h">
@@ -69,16 +51,7 @@
     <ClInclude Include="data_helpers\data_access.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="data_helpers\data_arrayhelper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="data_helpers\data_helper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="syscall1console\syscall1console.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="syscall2memory\syscall2memory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="syscalls\syscall.h">
@@ -96,21 +69,45 @@
     <ClInclude Include="syscalls\syscallid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="data_helpers\data_parrayhelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="syscall_console\consoleparrayfuncs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="syscall_console\consoleptrfuncs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="syscall_console\consolevaluefuncs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="syscall_memory\memoryparraycalls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="syscall_memory\memoryptrcalls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="syscall_console\syscall_console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="syscall_memory\syscall_memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="syscall_memory\memory_ops.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="syscall_console\console_ops.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mpasm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="registers.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="syscall2memory\syscall2memory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="syscall1console\syscall1console.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="run_context.cpp">
@@ -122,11 +119,29 @@
     <ClCompile Include="syscalls\syscall.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="syscall_console\syscall_console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="syscall_memory\syscall_memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mpasm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="test.mpasm" />
     <None Include="ptest.mpasm" />
     <None Include="hello.mpasm" />
     <None Include="pahello.mpasm" />
+    <None Include="Docs\Programmers\naming_conventions.htm" />
+    <None Include="Docs\SystemCalls\syscallid.htm" />
+    <None Include="Docs\SystemCalls\console_ops.htm" />
+    <None Include="Docs\SystemCalls\memory_ops.htm" />
+    <None Include="Docs\mpasm_program_format.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="COPYING.LESSER" />
+    <Text Include="COPYING" />
   </ItemGroup>
 </Project>

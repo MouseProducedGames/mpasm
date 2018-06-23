@@ -1,0 +1,61 @@
+Copyright 2018 Mouse-Produced Games.
+Distributed under the terms of the GNU Lesser General Public Liceense (Version 3, 29 June 2007)
+
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio">
+<TITLE></TITLE>
+</HEAD>
+<BODY>
+    <p>
+        Note that 99% of the code is implemented through macro defines. Macro defines were chosen as they ultimately result in less clutter and code duplication than implementing multiple template class definitions. The macro defines and their files/folders follow an organized pattern, but you have been warned: You should be conversant with macros before making major changes to the codebase.</p>
+    <p>
+        A bytecode consists of:
+        <ul>
+            <li>One 8-bit data type (enum class DT).</li>
+            <li>One 8-bit op-code (enum class OP).</li>
+            <li>Up to two 8-bit memory locations (enum class ML).</li>
+            <li>No less than 32 bits; padding may be added to reach this value.</li>
+        </ul>
+        Note that ML values of 2 or greater refer to registers 0-253
+    </p>
+    <p>
+        Directory listing:
+        <ul>
+            <li>bytecode_op_funcs: These files execute the opcodes for a data type.</li>
+            <ul>
+                <li>op_arrayfuncs.h: Planned to contain stack array operations. WIP: Do not reference.</li>
+                <li>op_calls.cpp: Calls the macro in op_calls_impl.h for each datatype.</li>
+                <li>op_calls.h: Implements function headers for op_calls.cpp through a single macro call each.</li>
+                <li>op_calls_impl.h: Implements a macro that calls the macros in op_##datatype##funcs.h files to define all opcodes.</li>
+                <li>op_parrayfuncs_h: Implements opcodes for pointer-to-array ##datatypes##.</li>
+                <li>op_ptrfuncs.h: Implements opcodes for pointer-to-##datatype##.</li>
+                <li>op_ptrfuncs.h: Implements opcodes for ##datatype##.</li>
+            </ul>
+            <li>data_helpers: Implements helper macros and functions for accessing data in memory, the stack, or hardcoded into the bytecode.</li>
+            <ul>
+                <li>data_access.h: Contains macros and code that directly accesses data.</li>
+                <li>data_parrayhelper.h: Accesses specific ML pointer-to-array data through data_access.h.</li>
+                <li>data_helper.h.: Accesses specific ML data through data_access.h.</li>
+            </ul>
+            <li>Docs: Contains documentation on the multi-platform assembly runtime and solution.</li>
+            <ul>
+                <li>Programmers: Contains documentation on the codebase.</li>
+                <li>SystemCalls: Contains documentation on the system calls available from the runtime.</li>
+                <li>mpasm_program_format.htm: Declares the format of a file containing MPASM bytecode.</li>
+            </ul>
+            <li>syscall_##syscallid##: Contains code for executing specific system calls.</li>
+            <li>syscalls: Contains code for calling into a system call implementation.</li>
+            <li>*.mpasm: Test mpasm programs.</li>
+            <li>bytecode.h: Defines DT, OP, ML, and a reference bytecode struct.</li>
+            <li>mpasm.cpp: The main file. In test mode, hardcalls a specific *.mpasm file. Otherwise, runs the first .mpasm file in the command line.</li>
+            <li>parray.h: Defines the pointer-to-array type used (with explicit length).</li>
+            <li>registers.cpp: Implements registers for all datatypes, pointer-to-datatypes, and pointer-to-arrays of datatypes using templates.</li>
+            <li>registers.h: Declares the register template as extern.</li>
+            <li>run_context.cpp/.h: Contains the runtime context type which decodes and dispatches datatypes to the appropriate data type opcode handler (see bytecode_op_funcs).</li>
+            <li>stdafx.h/cpp: Standard defines.</li>
+            <li>targetver.h: Defines the target version.</li>
+        </ul>
+    </p>
+</BODY>
+</HTML>
