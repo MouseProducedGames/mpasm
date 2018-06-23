@@ -140,8 +140,4 @@
     <None Include="Docs\SystemCalls\memory_ops.htm" />
     <None Include="Docs\mpasm_program_format.htm" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="COPYING.LESSER" />
-    <Text Include="COPYING" />
-  </ItemGroup>
 </Project>
