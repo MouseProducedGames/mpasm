@@ -10,10 +10,11 @@
 
 enum class console_op : uint64_t
 {
-	write = 1,
-	getkey = 2,
-	read = 3,
-	writechar = 4,
+	getkey = 1,
+	readchar = 2,
+	writechar = 3,
+	read = 4,
+	write = 5,
 };
 
 #endif // !MPASM_MPASM_SYSCALL_CONSOLE_CONSOLE_OPS_H

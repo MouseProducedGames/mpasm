@@ -13,20 +13,20 @@ class parray
 {
 private:
 	T * _values;
-	size_t _length;
+	psize _length;
 
 public:
 	parray()
 		: _values(nullptr), _length(0) {}
-	parray(T * values, size_t length)
+	parray(T * values, psize length)
 		: _values(values), _length(length) {}
 
-	size_t &length()
+	psize &length()
 	{
 		return _length;
 	}
 
-	size_t length() const
+	psize length() const
 	{
 		return _length;
 	}
@@ -36,12 +36,12 @@ public:
 		return _values;
 	}
 
-	T & operator[](size_t index)
+	T & operator[](psize index)
 	{
 		return _values[index];
 	}
 
-	const T & operator[](size_t index) const
+	const T & operator[](psize index) const
 	{
 		return _values[index];
 	}

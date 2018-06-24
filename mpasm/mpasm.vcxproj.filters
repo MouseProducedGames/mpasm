@@ -30,67 +30,7 @@
     <ClInclude Include="run_context.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="bytecode_op_funcs\op_arrayfuncs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bytecode_op_funcs\op_parrayfuncs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bytecode_op_funcs\op_ptrfuncs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bytecode_op_funcs\op_valuefuncs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bytecode_op_funcs\op_calls_impl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bytecode_op_funcs\op_calls.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="data_helpers\data_access.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="data_helpers\data_helper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="syscalls\syscall.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="syscalls\sys_value_calls.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="syscalls\sys_parray_calls.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="syscalls\sys_ptr_calls.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="syscalls\syscallid.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="data_helpers\data_parrayhelper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="syscall_console\consoleparrayfuncs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="syscall_console\consoleptrfuncs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="syscall_console\consolevaluefuncs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="syscall_memory\memoryparraycalls.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="syscall_memory\memoryptrcalls.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="syscall_console\syscall_console.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="syscall_memory\syscall_memory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="parray.h">
@@ -100,6 +40,45 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="syscall_console\console_ops.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="icommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="isyscallhive.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="isubcallhive.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="syscall_memory\runtimememorycallhive.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="syscall_console\runtimeconsolecallhive.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\runtimecommandmap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\runtimesyscallhive.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\value_opcalls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\ptr_opcalls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\value_datacalls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\ptr_datacalls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\parray_opcalls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\parray_datacalls.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -113,19 +92,31 @@
     <ClCompile Include="run_context.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bytecode_op_funcs\op_calls.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="syscalls\syscall.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="syscall_console\syscall_console.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="syscall_memory\syscall_memory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="mpasm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="icommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="syscall_memory\runtimememorycallhive.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="syscall_console\runtimeconsolecallhive.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="runtime\runtimecommandmap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="runtime\runtimesyscallhive.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="runtime\value_datacalls.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="runtime\ptr_datacalls.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="runtime\parray_datacalls.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

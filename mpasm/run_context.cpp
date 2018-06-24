@@ -6,49 +6,39 @@
 #include "stdafx.h"
 #include "run_context.h"
 
+#include <map>
 #include <vector>
 
 #include "bytecode.h"
-#include "bytecode_op_funcs/op_calls.h"
-
-#define pdt(dt) (DT)((uint8_t)DT::Ptr | (uint8_t)dt)
-#define arraydt(dt) (DT)((uint8_t)DT::Array | (uint8_t)dt)
-
-#define typecall(shorttype)\
-case DT::##shorttype##: DT##shorttype##(*this); break;\
-case pdt(DT::##shorttype##): DTP##shorttype##(*this); break;\
-case pdt(arraydt(DT::##shorttype##)): DTPA##shorttype##(*this); break;\
+#include "icommand.h"
 
 context::context(
+	const icommand &commandmap,
 	const std::vector<uint8_t> &inst,
 	size_t &IP,
 	std::vector<byte> &stk,
 	size_t &SP,
 	size_t memadjust
-) : m_inst(inst), m_IP(IP), m_stk(stk), m_SP(SP), m_memadjust(memadjust)
+) : m_commandmap(commandmap), m_inst(inst), m_IP(IP), m_stk(stk), m_SP(SP), m_memadjust(memadjust)
 {
-	while (IP < inst.size())
+	while (IP < m_inst.size())
 	{
-		switch ((DT)inst[IP])
-		{
-#pragma warning(push)
-#pragma warning(disable:4063)
-		default: return;
-			typecall(F32);
-			typecall(F64);
-
-			typecall(I8);
-			typecall(I16);
-			typecall(I32);
-			typecall(I64);
-
-			typecall(UI8);
-			typecall(UI16);
-			typecall(UI32);
-			typecall(UI64);
-		}
-#pragma warning(pop)
+		size_t useIP = m_IP;
+		m_IP += 4;
+		if (!commandmap(
+			(DT)m_inst[useIP],
+			(OP)m_inst[useIP + 1],
+			(ML)m_inst[useIP + 2],
+			(ML)m_inst[useIP + 3],
+			*this
+		))
+			return;
 	}
+}
+
+const icommand &context::commandmap()
+{
+	return m_commandmap;
 }
 
 const std::vector<uint8_t> &context::inst()

@@ -8,7 +8,7 @@ Distributed under the terms of the GNU Lesser General Public Liceense (Version 3
 </HEAD>
 <BODY>
     <p>
-        Note that 99% of the code is implemented through macro defines. Macro defines were chosen as they ultimately result in less clutter and code duplication than implementing multiple template class definitions. The macro defines and their files/folders follow an organized pattern, but you have been warned: You should be conversant with macros before making major changes to the codebase.</p>
+        The code now contains almost no macros, and has been entirely re-written and redesigned using templates.
     <p>
         A bytecode consists of:
         <ul>
@@ -22,32 +22,38 @@ Distributed under the terms of the GNU Lesser General Public Liceense (Version 3
     <p>
         Directory listing:
         <ul>
-            <li>bytecode_op_funcs: These files execute the opcodes for a data type.</li>
-            <ul>
-                <li>op_arrayfuncs.h: Planned to contain stack array operations. WIP: Do not reference.</li>
-                <li>op_calls.cpp: Calls the macro in op_calls_impl.h for each datatype.</li>
-                <li>op_calls.h: Implements function headers for op_calls.cpp through a single macro call each.</li>
-                <li>op_calls_impl.h: Implements a macro that calls the macros in op_##datatype##funcs.h files to define all opcodes.</li>
-                <li>op_parrayfuncs_h: Implements opcodes for pointer-to-array ##datatypes##.</li>
-                <li>op_ptrfuncs.h: Implements opcodes for pointer-to-##datatype##.</li>
-                <li>op_ptrfuncs.h: Implements opcodes for ##datatype##.</li>
-            </ul>
-            <li>data_helpers: Implements helper macros and functions for accessing data in memory, the stack, or hardcoded into the bytecode.</li>
-            <ul>
-                <li>data_access.h: Contains macros and code that directly accesses data.</li>
-                <li>data_parrayhelper.h: Accesses specific ML pointer-to-array data through data_access.h.</li>
-                <li>data_helper.h.: Accesses specific ML data through data_access.h.</li>
-            </ul>
             <li>Docs: Contains documentation on the multi-platform assembly runtime and solution.</li>
             <ul>
                 <li>Programmers: Contains documentation on the codebase.</li>
                 <li>SystemCalls: Contains documentation on the system calls available from the runtime.</li>
                 <li>mpasm_program_format.htm: Declares the format of a file containing MPASM bytecode.</li>
             </ul>
-            <li>syscall_##syscallid##: Contains code for executing specific system calls.</li>
-            <li>syscalls: Contains code for calling into a system call implementation.</li>
-            <li>*.mpasm: Test mpasm programs.</li>
+            <li>runtime: Contains code for executing MPASM programs using interpretation.</li>
+            <ul>
+                <li>parray_datacalls.cpp/h: Contains code for storing and retreiving parray data.</li>
+                <li>parray_opcalls.cpp/h: Contains code for executing operations on parrays.</li>
+                <li>ptr_datacalls.cpp/h: Contains code for storing and retreiving pointer data.</li>
+                <li>ptr_opcalls.cpp/h: Contains code for executing operations on data stored in a pointer.</li>
+                <li>runtimecommandmap.cpp/h: Contains an implementation that maps operations to calls.</li>
+                <li>runtimesyscallhive.cpp/h: Contains an implementation that maps system calls to interfaces.</li>
+                <li>value_datacalls.cpp/h: Contains code for storing and retreiving data.</li>
+                <li>value_opcalls.cpp/h: Contains code for executing operations on data.</li>
+            </ul>
+            <li>syscall_console: Contains code for calling into the console system.</li>
+            <ul>
+                <li>console_ops.h: Enumeration of console operations.</li>
+                <li>runtimeconsolecallhive.cpp/h: Contains code for executing console calls.</li>
+            </ul>
+            <li>syscall_memory: Contains code for calling into the platform memory system.</li>
+            <ul>
+                <li>memory_ops.h: Enumeration of platform memory operations.</li>
+                <li>runtimememorycallhive.cpp/h: Contains code for executing platform memory calls.</li>
+            </ul>
             <li>bytecode.h: Defines DT, OP, ML, and a reference bytecode struct.</li>
+            <li>*.mpasm: Test mpasm programs.</li>
+            <li>icommand.cpp/h: Defines the interface for classes that implement operations on datatypes.</li>
+            <li>subcallhive.h: Defines the interface for classes that implement a class of system calls.</li>
+            <li>syscallhive.h: Defines the interface for classes that receive and dispatch system calls.</li>
             <li>mpasm.cpp: The main file. In test mode, hardcalls a specific *.mpasm file. Otherwise, runs the first .mpasm file in the command line.</li>
             <li>parray.h: Defines the pointer-to-array type used (with explicit length).</li>
             <li>registers.cpp: Implements registers for all datatypes, pointer-to-datatypes, and pointer-to-arrays of datatypes using templates.</li>

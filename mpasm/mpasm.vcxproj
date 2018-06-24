@@ -166,40 +166,36 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="bytecode.h" />
-    <ClInclude Include="bytecode_op_funcs\op_calls_impl.h" />
-    <ClInclude Include="bytecode_op_funcs\op_calls.h" />
-    <ClInclude Include="data_helpers\data_helper.h" />
-    <ClInclude Include="data_helpers\data_access.h" />
-    <ClInclude Include="bytecode_op_funcs\op_ptrfuncs.h" />
+    <ClInclude Include="icommand.h" />
+    <ClInclude Include="isyscallhive.h" />
     <ClInclude Include="registers.h" />
+    <ClInclude Include="runtime\parray_datacalls.h" />
+    <ClInclude Include="runtime\parray_opcalls.h" />
+    <ClInclude Include="runtime\ptr_datacalls.h" />
+    <ClInclude Include="runtime\ptr_opcalls.h" />
+    <ClInclude Include="runtime\runtimecommandmap.h" />
+    <ClInclude Include="runtime\runtimesyscallhive.h" />
+    <ClInclude Include="runtime\value_opcalls.h" />
     <ClInclude Include="run_context.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="syscalls\syscall.h" />
     <ClInclude Include="syscall_console\console_ops.h" />
-    <ClInclude Include="syscall_console\syscall_console.h" />
-    <ClInclude Include="bytecode_op_funcs\op_arrayfuncs.h" />
-    <ClInclude Include="syscall_console\consoleparrayfuncs.h" />
-    <ClInclude Include="syscall_console\consoleptrfuncs.h" />
-    <ClInclude Include="syscall_console\consolevaluefuncs.h" />
     <ClInclude Include="parray.h" />
-    <ClInclude Include="bytecode_op_funcs\op_parrayfuncs.h" />
-    <ClInclude Include="data_helpers\data_parrayhelper.h" />
-    <ClInclude Include="syscall_memory\memoryparraycalls.h" />
-    <ClInclude Include="syscall_memory\memoryptrcalls.h" />
-    <ClInclude Include="bytecode_op_funcs\op_valuefuncs.h" />
+    <ClInclude Include="isubcallhive.h" />
+    <ClInclude Include="runtime\value_datacalls.h" />
+    <ClInclude Include="syscall_console\runtimeconsolecallhive.h" />
     <ClInclude Include="syscall_memory\memory_ops.h" />
-    <ClInclude Include="syscall_memory\syscall_memory.h" />
     <ClInclude Include="syscalls\syscallid.h" />
-    <ClInclude Include="syscalls\sys_parray_calls.h" />
-    <ClInclude Include="syscalls\sys_ptr_calls.h" />
-    <ClInclude Include="syscalls\sys_value_calls.h" />
+    <ClInclude Include="syscall_memory\runtimememorycallhive.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="bytecode_op_funcs\op_calls.cpp" />
+    <ClCompile Include="icommand.cpp" />
     <ClCompile Include="mpasm.cpp" />
+    <ClCompile Include="runtime\parray_datacalls.cpp" />
+    <ClCompile Include="runtime\ptr_datacalls.cpp" />
+    <ClCompile Include="runtime\runtimecommandmap.cpp" />
+    <ClCompile Include="runtime\runtimesyscallhive.cpp" />
     <ClCompile Include="run_context.cpp" />
-    <ClCompile Include="syscalls\syscall.cpp" />
     <ClCompile Include="registers.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -207,8 +203,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="syscall_console\syscall_console.cpp" />
-    <ClCompile Include="syscall_memory\syscall_memory.cpp" />
+    <ClCompile Include="runtime\value_datacalls.cpp" />
+    <ClCompile Include="syscall_console\runtimeconsolecallhive.cpp" />
+    <ClCompile Include="syscall_memory\runtimememorycallhive.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Docs\mpasm_program_format.htm">

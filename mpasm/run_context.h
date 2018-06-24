@@ -10,9 +10,13 @@
 
 #include <vector>
 
+class context;
+class icommand;
+
 class context
 {
 private:
+	const icommand &m_commandmap;
 	const std::vector<uint8_t> &m_inst;
 	size_t &m_IP;
 	std::vector<byte> &m_stk;
@@ -21,6 +25,7 @@ private:
 
 public:
 	context(
+		const icommand &m_commandmap,
 		const std::vector<uint8_t> &inst,
 		size_t &IP,
 		std::vector<byte> &stk,
@@ -28,6 +33,7 @@ public:
 		const size_t memadjust
 	);
 
+	const icommand &commandmap();
 	const std::vector<uint8_t> &inst();
 	size_t &IP();
 	std::vector<byte> &stk();

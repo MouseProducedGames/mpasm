@@ -10,16 +10,20 @@
 
 enum class DT : uint8_t
 {
-	UI8 = 1,
-	UI16,
-	UI32,
-	UI64,
-	I8,
-	I16,
-	I32,
-	I64,
-	F32,
-	F64,
+	UI8 = 0x1,
+	UI16 = 0x2,
+	UI32 = 0x3,
+	UI64 = 0x4,
+	
+	I8 = 0x5,
+	I16 = 0x6,
+	I32 = 0x7,
+	I64 = 0x8,
+	
+	F32 = 0x9,
+	F64 = 0xA,
+	
+	PSize = 0xB,
 
 	Ptr = 0x20,
 	Array = 0x40,
@@ -43,20 +47,26 @@ enum class OP : uint8_t
 	OpSub,
 
 	Push = 0x30,
+	PushDeref = 0x31,
+	PushRef = 0x32,
+	PopPush = 0x33,
+	PopPushDeref = 0x34,
+	PopPushRef = 0x35,
 
 	ConvUI8 = 0x40,
-	ConvUI16,
-	ConvUI32,
-	ConvUI64,
+	ConvUI16 = 0x41,
+	ConvUI32 = 0x42,
+	ConvUI64 = 0x43,
 	
-	ConvI8,
-	ConvI16,
-	ConvI32,
-	ConvI64,
+	ConvI8 = 0x44,
+	ConvI16 = 0x45,
+	ConvI32 = 0x46,
+	ConvI64 = 0x47,
 
-	ConvF32,
+	ConvF32 = 0x48,
+	ConvF64 = 0x49,
 
-	ConvF64,
+	ConvPSize = 0x4A,
 
 	Gosub = 0x50,
 	Jmp,
